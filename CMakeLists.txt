@@ -7,6 +7,7 @@ link_libraries(${CMAKE_CURRENT_LIST_DIR}/libs/libOpenCL.so)
 
 SET(SRC_LIST main.cpp tool.cpp)
 ADD_EXECUTABLE(main ${SRC_LIST})
+add_definitions(-DCL_TARGET_OPENCL_VERSION=220)
 
 if(ANDROID)
     message(STATUS " if android")

@@ -7,7 +7,7 @@ CXX_FLAGS="-march=armv7-a -mfpu=neon -mfloat-abi=softfp -pie -fPIE -w -Wno-error
 TOOLCHAIN_FILE="../android.toolchain.cmake"
 ABI="armeabi-v7a with NEON"
 MODE="Release"
-ANDROID_PLATFORM_VERSION="android-22"
+ANDROID_PLATFORM_VERSION="android-26"
 
 cmake   ..  \
         -DANDROID_ABI="${ABI}" \
@@ -15,9 +15,10 @@ cmake   ..  \
         -DCMAKE_TOOLCHAIN_FILE="${TOOLCHAIN_FILE}" \
         -DANDROID_PLATFORM="${ANDROID_PLATFORM_VERSION}" \
         -DCMAKE_CXX_FLAGS="${CXX_FLAGS}" \
-        -DANDROID=true \
+        -DANDROID=true
 
 make -j
 
-adb push main /data/local/tmp/test_opencl
-adb push ../HelloWorld_Kernel.cl /data/local/tmp/test_opencl
+adb push main /data/local/tmp/bin/test_opencl
+adb push ../HelloWorld_Kernel.cl /data/local/tmp/bin/HelloWorld_Kernel.cl
+adb shell "cd data/local/tmp/bin ; chmod +x test_opencl"
